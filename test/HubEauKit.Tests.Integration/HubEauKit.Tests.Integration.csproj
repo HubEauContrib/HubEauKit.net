@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\HubEauKit.net\HubEauKit.net.csproj" />
+    <ProjectReference Include="..\..\src\HubEauKit\HubEauKit.csproj" />
   </ItemGroup>
 
 </Project>

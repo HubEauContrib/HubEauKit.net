@@ -12,51 +12,24 @@ public class EcoulementClientTests
 
     public EcoulementClientTests()
     {
-
-
         _client = new EcoulementClient(new HttpClientRequestAdapter(new AnonymousAuthenticationProvider()));
     }
 
     [Fact]
-    public async Task GetStationsTest()
+    public async Task GetCampagnesTest()
     {
-        var response = await _client.Vbeta.Ecoulement.Stations.GetAsync(q =>
+        var response = await _client.Vbeta.Ecoulement.Campagnes.GetAsync(config =>
         {
-            q.QueryParameters.Size = 2;
-            q.QueryParameters.Libelle_cours_eau = new string[] { "La Moselle" };
-            q.QueryParameters.Sort = "Code_station";
-
+            config.QueryParameters.Size = 2;
         });
-
-        response.Data.Should().HaveCount(2);
-        response.Data[0].Code_bassin.Should().Be("02");
-        response.Data[0].Code_commune.Should().Be("88081");
-        response.Data[0].Code_cours_eau.Should().Be("A---0060");
-        response.Data[0].Code_departement.Should().Be("88");
-        response.Data[0].Code_epsg_station.Should().Be("2154");
-        response.Data[0].Code_projection_station.Should().Be("26");
-        response.Data[0].Code_region.Should().Be("44");
-        response.Data[0].Code_station.Should().Be("A4000001");
-        response.Data[0].Coordonnee_x_station.Should().Be(989351.1d);
-        response.Data[0].Coordonnee_y_station.Should().Be(6761643);
-        response.Data[0].Etat_station.Should().Be("Active");
-        response.Data[0].Latitude.Should().Be(47.891296707d);
-        response.Data[0].Libelle_bassin.Should().Be("Rhin-Meuse");
-        response.Data[0].Libelle_commune.Should().Be("BUSSANG");
-        response.Data[0].Libelle_cours_eau.Should().Be("La Moselle");
-        response.Data[0].Libelle_departement.Should().Be("Vosges");
-        response.Data[0].Libelle_projection_station.Should().Be("RGF93 / Lambert 93");
-        response.Data[0].Libelle_region.Should().Be("Grand Est");
-        response.Data[0].Libelle_station.Should().Be("La Moselle a Bussang");
-        response.Data[0].Longitude.Should().Be(6.873374276d);
     }
 
     [Fact]
     public async Task GetObservationsTest()
     {
-        var response = await _client.Vbeta.Ecoulement.Observations.GetAsync(q =>
+        var response = await _client.Vbeta.Ecoulement.Observations.GetAsync(config =>
         {
-            q.QueryParameters.Size = 10;
+            config.QueryParameters.Size = 2;
 
         });
 
@@ -66,9 +39,9 @@ public class EcoulementClientTests
     [Fact]
     public async Task GetObservationsCsvTest()
     {
-        var stream = await _client.Vbeta.Ecoulement.Csv.GetAsync(async q =>
+        var stream = await _client.Vbeta.Ecoulement.Csv.GetAsync(config =>
         {
-            q.QueryParameters.Size = 2;
+            config.QueryParameters.Size = 2;
         });
 
         var configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -113,7 +86,41 @@ public class EcoulementClientTests
         records[0].Longitude.Should().Be(3.0843202694409513);
     }
 
-    public class ObservationCsv
+    [Fact]
+    public async Task GetStationsTest()
+    {
+        var response = await _client.Vbeta.Ecoulement.Stations.GetAsync(config =>
+        {
+            config.QueryParameters.Size = 2;
+            config.QueryParameters.Libelle_cours_eau = new string[] { "La Moselle" };
+            config.QueryParameters.Sort = "Code_station";
+
+        });
+
+        response.Data.Should().HaveCount(2);
+        response.Data[0].Code_bassin.Should().Be("02");
+        response.Data[0].Code_commune.Should().Be("88081");
+        response.Data[0].Code_cours_eau.Should().Be("A---0060");
+        response.Data[0].Code_departement.Should().Be("88");
+        response.Data[0].Code_epsg_station.Should().Be("2154");
+        response.Data[0].Code_projection_station.Should().Be("26");
+        response.Data[0].Code_region.Should().Be("44");
+        response.Data[0].Code_station.Should().Be("A4000001");
+        response.Data[0].Coordonnee_x_station.Should().Be(989351.1d);
+        response.Data[0].Coordonnee_y_station.Should().Be(6761643);
+        response.Data[0].Etat_station.Should().Be("Active");
+        response.Data[0].Latitude.Should().Be(47.891296707d);
+        response.Data[0].Libelle_bassin.Should().Be("Rhin-Meuse");
+        response.Data[0].Libelle_commune.Should().Be("BUSSANG");
+        response.Data[0].Libelle_cours_eau.Should().Be("La Moselle");
+        response.Data[0].Libelle_departement.Should().Be("Vosges");
+        response.Data[0].Libelle_projection_station.Should().Be("RGF93 / Lambert 93");
+        response.Data[0].Libelle_region.Should().Be("Grand Est");
+        response.Data[0].Libelle_station.Should().Be("La Moselle a Bussang");
+        response.Data[0].Longitude.Should().Be(6.873374276d);
+    }
+
+    internal class ObservationCsv
     {
         [Name("code_bassin")]
         public string Code_bassin { get; set; }
