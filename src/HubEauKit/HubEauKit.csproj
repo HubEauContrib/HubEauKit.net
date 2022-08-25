@@ -5,13 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>HubEauKit.net</Title>
+	<Version>0.1.0</Version>
     <Company>HubEau Community Contributions</Company>
     <Description>An unofficial Hub'Eau API client library for .NET </Description>
     <RepositoryUrl>https://github.com/HubEauContrib/HubEauKit.net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>eau; API; HubEauKit; Hub'Eau; eaufrance; cours d'eau;</PackageTags>
-    <AssemblyVersion>0.8.0.0</AssemblyVersion>
-    <FileVersion>0.8.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
