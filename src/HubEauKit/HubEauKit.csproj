@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Title>HubEauKit.net</Title>
-	<Version>0.1.0</Version>
+    <Title>HubEauKit</Title>
+	<Version>0.2.0</Version>
     <Company>HubEau Community Contributions</Company>
     <Description>An unofficial Hub'Eau API client library for .NET </Description>
     <RepositoryUrl>https://github.com/HubEauContrib/HubEauKit.net</RepositoryUrl>
