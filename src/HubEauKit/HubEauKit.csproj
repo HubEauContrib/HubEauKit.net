@@ -1,22 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Title>HubEauKit</Title>
-	<Version>0.2.0</Version>
-    <Company>HubEau Community Contributions</Company>
-    <Description>An unofficial Hub'Eau API client library for .NET </Description>
+    <AssemblyName>HubEauKit</AssemblyName>
+    <PackageId>HubEauKit</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>HubEau Community Contributions</Authors>
+    <Company>HubEauContrib </Company>
+
+    <AssemblyTitle>OpenAPI Library</AssemblyTitle>
+    <Description>An unofficial Hub'Eau API client library for .NET</Description>
+    <Copyright></Copyright>
+    <RootNamespace>HubEauKit</RootNamespace>
+    <Version>0.3.0</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\HubEauKit.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/HubEauContrib/HubEauKit.net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Nullable>annotations</Nullable>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>eau; API; HubEauKit; Hub'Eau; eaufrance; cours d'eau;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.0.0-preview.8" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.0.0-preview.6" />
-    <PackageReference Include="Microsoft.Kiota.Serialization.Text" Version="1.0.0-preview.3" />
+    <PackageReference Include="JsonSubTypes" Version="1.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="108.0.2" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
 </Project>
